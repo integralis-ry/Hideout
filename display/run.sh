@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 
-python3 transport.py&
+python3 display.py&
