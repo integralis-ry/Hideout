@@ -17,7 +17,7 @@ def setup():
     with open("config.json", "r") as f:
         raw_config = f.read()
     config = json.loads(raw_config)
-    URL = config["URL"]
+    URL = config["url"]
 
 
 def main():
