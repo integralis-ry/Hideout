@@ -3,10 +3,12 @@ import json
 import time
 
 driver = None
+durations = None
 
 
 def setup():
     global driver
+    global durations
 
     service = webdriver.FirefoxService(executable_path="/snap/bin/geckodriver")
     options = webdriver.FirefoxOptions()
@@ -17,7 +19,8 @@ def setup():
     with open("config.json", "r") as f:
         raw_config = f.read()
     config = json.loads(raw_config)
-    urls = config["urls"]
+    urls = [x["url"] for x in config["urls"]]
+    durations = [x["duration"] for x in config["urls"]]
 
     for url in urls:
         driver.get(url)
@@ -27,11 +30,14 @@ def setup():
 
 def main():
     while True:
-        for window_handle in driver.window_handles:
+        for duration, window_handle in zip(durations, driver.window_handles):
             driver.switch_to.window(window_handle)
-            time.sleep(10)
+            time.sleep(duration)
 
 
 if __name__ == "__main__":
     setup()
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        driver.quit()

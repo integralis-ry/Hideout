@@ -1,7 +1,16 @@
 {
     "urls": [
-        "https://omatnaytot.hsl.fi/static?url=8913962a-d7a6-5837-85f1-16821af9ee9a",
-        "https://omatnaytot.hsl.fi/static?url=73772c30-9514-563c-ab7b-3ff86a772be6",
-        "https://livestream.com/accounts/4931571/events/5369913/player?autoPlay=true&mute=true"
+        {
+            "url":"https://omatnaytot.hsl.fi/static?url=8913962a-d7a6-5837-85f1-16821af9ee9a",
+            "duration":15
+        },
+        {
+            "url":"https://omatnaytot.hsl.fi/static?url=73772c30-9514-563c-ab7b-3ff86a772be6",
+            "duration":10
+        },
+        {
+            "url":"https://livestream.com/accounts/4931571/events/5369913/player?autoPlay=true&mute=true",
+            "duration":5
+        }
     ]
 }
