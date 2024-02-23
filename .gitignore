@@ -162,3 +162,4 @@ cython_debug/
 # Other
 
 info_configured.html
+config_configured.json

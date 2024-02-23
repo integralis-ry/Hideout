@@ -11,6 +11,14 @@
         {
             "url":"https://livestream.com/accounts/4931571/events/5369913/player?autoPlay=true&mute=true",
             "duration":5
+        },
+        {
+            "url":"file://{{DIR}}/sponsor.html",
+            "duration":5
+        },
+        {
+            "url":"file://{{DIR}}/info_configured.html",
+            "duration":5
         }
     ]
 }

@@ -16,7 +16,7 @@ def setup():
     options.add_argument("--kiosk")
     driver = webdriver.Firefox(service=service, options=options)
 
-    with open("config.json", "r") as f:
+    with open("config_configured.json", "r") as f:
         raw_config = f.read()
     config = json.loads(raw_config)
     urls = [x["url"] for x in config["urls"]]
