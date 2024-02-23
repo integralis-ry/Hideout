@@ -1,12 +1,11 @@
 from selenium import webdriver
 import json
+import time
 
 driver = None
-URL = None
 
 
 def setup():
-    global URL
     global driver
 
     service = webdriver.ChromeService(executable_path='/usr/lib/chromium-browser/chromedriver')
@@ -19,15 +18,21 @@ def setup():
     with open("config.json", "r") as f:
         raw_config = f.read()
     config = json.loads(raw_config)
-    URL = config["url"]
+    urls = config["urls"]
+
+    for url in urls:
+        driver.get(url)
+        driver.switch_to.new_window("tab")
+    driver.close()
 
 
 def main():
-    driver.get(URL)
+    while True:
+        for window_handle in driver.window_handles:
+            driver.switch_to.window(window_handle)
+            time.sleep(10)
 
 
 if __name__ == "__main__":
     setup()
     main()
-    while True:
-        pass
