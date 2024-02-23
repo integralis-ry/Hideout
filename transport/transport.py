@@ -1,19 +1,31 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
 import json
+
+driver = None
+URL = None
 
 
 def setup():
+    global URL
+    global driver
+
     service = webdriver.ChromeService(executable_path='/usr/lib/chromium-browser/chromedriver')
-    driver = webdriver.Chrome(service=service)
-    return driver
+    options = webdriver.ChromeOptions()
+    options.add_argument("--start-maximized")
+    driver = webdriver.Chrome(service=service, options=options)
+
+    with open("config.json", "r") as f:
+        raw_config = f.read()
+    config = json.loads(raw_config)
+    URL = config["URL"]
 
 
-def main(driver):
-    driver.get("http://www.python.org")
+def main():
+    driver.get(URL)
 
 
 if __name__ == "__main__":
-    driver = setup()
-    main(driver)
+    setup()
+    main()
+    while True:
+        pass
