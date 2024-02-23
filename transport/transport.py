@@ -13,7 +13,7 @@ def setup():
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
     options.add_argument("--kiosk")
-    options.add_argument("--disable-infobars")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
     driver = webdriver.Chrome(service=service, options=options)
 
     with open("config.json", "r") as f:
