@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+git pull
+
 cp info.html info_configured.html
 cp config.json config_configured.json
 
