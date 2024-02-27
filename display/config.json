@@ -17,10 +17,6 @@
             "duration":5
         },
         {
-            "url":"file://{{DIR}}/sponsor.html",
-            "duration":3
-        },
-        {
             "url":"file://{{DIR}}/info_configured.html",
             "duration":3
         }

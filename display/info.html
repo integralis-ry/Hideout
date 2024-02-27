@@ -3,20 +3,51 @@
 <html>
 
 <head>
+    <style>
+        h1 {
+            font-size: 225%;
+        }
+        ul, p {
+            font-size: 150%;
+        }
+        .row {
+            display: flex;
+        }
 
+        .column {
+            flex: 50%;
+        }
+        
+    </style>
 </head>
 
-<body style="font-size: 200%;">
-    <h1>
-        Technical info
-    </h1>
-    <br>
-    <ul>
-        <li><b>Network SSID:</b> {{SSID}}</li>
-        <li><b>IP Address:</b> {{IP}}</li>
-        <li><b>Username:</b> {{WHOAMI}}</li>
-        <li><b>GitHub link:</b> {{GITHUB}}</li>
-        <li><b>Send SSH keys to:</b> {{EMAIL}}</li>
-    </ul>    
+<body>
+    <div class="row">
+        <div class="column">
+            <h1>
+                Sponsored by HERE Technologies
+            </h1>
+            <br>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/HERE_logo.svg/1200px-HERE_logo.svg.png" width="500">
+            
+        </div>
+        <div class="column">
+            <h1>
+                Technical info
+            </h1>
+            <br>
+            <ul>
+                <li><b>Network SSID:</b> {{SSID}}</li>
+                <li><b>IP Address:</b> {{IP}}</li>
+                <li><b>Username:</b> {{WHOAMI}}</li>
+                <li><b>GitHub link:</b> {{GITHUB}}</li>
+            </ul>
+            <br>
+            <h1>
+                Want access to this screen?
+            </h1>
+            <p>Send an email to <a href="mailto:it@integralis.fi">it@integralis.fi</a></p>
+        </div>
+      </div> 
 </body>
 </html>
