@@ -15,7 +15,8 @@ def setup():
     capabilities = webdriver.DesiredCapabilities.CHROME.copy()
     options.add_argument("--start-maximized")
     options.add_argument("--kiosk")
-    driver = webdriver.Chrome(service=service, options=options, desired_capabilities=capabilities)
+    options.set_capability("browserName", "chrome")
+    driver = webdriver.Chrome(service=service, options=options)
 
     with open("config_configured.json", "r") as f:
         raw_config = f.read()
