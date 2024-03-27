@@ -4,11 +4,13 @@ import time
 
 driver = None
 durations = None
+urls = None
 
 
 def setup():
     global driver
     global durations
+    global urls
 
     service = webdriver.FirefoxService(executable_path="/snap/bin/geckodriver")
     options = webdriver.FirefoxOptions()
@@ -21,18 +23,18 @@ def setup():
     config = json.loads(raw_config)
     urls = [x["url"] for x in config["urls"]]
     durations = [x["duration"] for x in config["urls"]]
-
-    for url in urls:
-        driver.get(url)
-        driver.switch_to.new_window("tab")
-    driver.close()
+    durations = durations[-1:] + durations[:-1]
+    driver.get(urls[-1])
 
 
 def main():
     while True:
-        for duration, window_handle in zip(durations, driver.window_handles):
-            driver.switch_to.window(window_handle)
+        for url, duration in zip(urls, durations):
+            driver.switch_to.new_window("tab")
+            driver.get(url)
+            driver.switch_to.window(driver.window_handles[0])
             time.sleep(duration)
+            driver.close()
 
 
 if __name__ == "__main__":
