@@ -23,12 +23,19 @@ def setup():
     urls = [x["url"] for x in config["urls"]]
     durations = [x["duration"] for x in config["urls"]]
 
+    driver.get(urls[0])
+    driver.switch_to.new_window("tab")
+    driver.get(urls[1])
+    driver.switch_to.window(driver.window_handles[0])
+
 
 def main():
+    length = len(urls)
     while True:
-        for url, duration in zip(urls, durations):
-            driver.get(url)
-            time.sleep(duration)
+        for i in range(length):
+            time.sleep(durations[i])
+            driver.get(urls[(i+2)%length])
+            driver.switch_to.window(driver.window_handles[(i+1)%2])
 
 
 if __name__ == "__main__":
