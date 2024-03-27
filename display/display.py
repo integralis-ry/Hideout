@@ -15,7 +15,7 @@ def setup():
     options = webdriver.FirefoxOptions()
     options.add_argument("--start-maximized")
     options.add_argument("--kiosk")
-    options.page_load_strategy = "eager"
+    options.page_load_strategy = "none"
     driver = webdriver.Firefox(service=service, options=options)
 
     with open("config_configured.json", "r") as f:
