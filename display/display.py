@@ -10,11 +10,11 @@ def setup():
     global driver
     global durations
 
-    service = webdriver.FirefoxService(executable_path="/snap/bin/geckodriver")
-    options = webdriver.FirefoxOptions()
+    service = webdriver.ChromeService(executable_path="/usr/bin/chromium-browser")
+    options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
     options.add_argument("--kiosk")
-    driver = webdriver.Firefox(service=service, options=options)
+    driver = webdriver.Chrome(service=service, options=options)
 
     with open("config_configured.json", "r") as f:
         raw_config = f.read()
