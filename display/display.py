@@ -23,7 +23,7 @@ def setup():
     config = json.loads(raw_config)
     urls = [x["url"] for x in config["urls"]]
     durations = [x["duration"] for x in config["urls"]]
-    durations = durations[-1:] + durations[:-1]
+    #durations = durations[-1:] + durations[:-1]
     driver.get(urls[-1])
 
 
