@@ -10,7 +10,7 @@ def setup():
     global driver
     global durations
 
-    service = webdriver.ChromeService(executable_path="/usr/bin/chromium-browser")
+    service = webdriver.ChromeService(executable_path="/usr/bin/chromedriver")
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
     options.add_argument("--kiosk")
