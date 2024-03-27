@@ -12,9 +12,10 @@ def setup():
 
     service = webdriver.ChromeService(executable_path="./bin/chromedriver")
     options = webdriver.ChromeOptions()
+    capabilities = webdriver.DesiredCapabilities.CHROME.copy()
     options.add_argument("--start-maximized")
     options.add_argument("--kiosk")
-    driver = webdriver.Chrome(service=service, options=options)
+    driver = webdriver.Chrome(service=service, options=options, desired_capabilities=capabilities)
 
     with open("config_configured.json", "r") as f:
         raw_config = f.read()
