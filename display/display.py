@@ -30,11 +30,10 @@ def setup():
 def main():
     while True:
         for url, duration in zip(urls, durations):
+            driver.close()
             driver.switch_to.new_window("tab")
             driver.get(url)
-            driver.switch_to.window(driver.window_handles[0])
             time.sleep(duration)
-            driver.close()
 
 
 if __name__ == "__main__":
