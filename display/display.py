@@ -10,7 +10,7 @@ def setup():
     global driver
     global durations
 
-    service = webdriver.ChromeService(executable_path="./bin/chromedriver")
+    service = webdriver.ChromeService(executable_path="/usr/lib/chromium-browser/chromedriver")
     options = webdriver.ChromeOptions()
     capabilities = webdriver.DesiredCapabilities.CHROME.copy()
     options.add_argument("--start-maximized")
