@@ -17,6 +17,10 @@
             "duration":15
         },
         {
+            "url":"file://{{DIR}}/unicafe_menu.html",
+            "duration":15
+        },
+        {
             "url":"file://{{DIR}}/info_configured.html",
             "duration":15
         }
