@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniCafe Menus</title>
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding: 1vh;
+            box-sizing: border-box;
+        }
+        .top-section {
+            display: flex;
+            height: 79vh;
+            margin-bottom: 1vh;
+        }
+        .menu-box {
+            width: calc(50% - 0.5vh);
+            height: 100%;
+            overflow-y: auto;
+            padding: 1vh;
+            box-sizing: border-box;
+        }
+        .menu-box:first-child {
+            margin-right: 1vh;
+        }
+        .physicum-box {
+            height: 19vh;
+            overflow-y: auto;
+            padding: 1vh;
+            box-sizing: border-box;
+        }
+        .physicum-box h2 {
+            text-align: center; /* Center the h2 element in the physicum-box */
+        }
+        .menu-box h2 {
+            text-align: center;
+        }
+        .menu-box, .physicum-box {
+            background-color: white;
+            border-radius: 2vh;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 1vh;
+            margin-top: 0;
+            font-size: 2.5vh;
+        }
+        .menu-item, .physicum-menu-item {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 1vh;
+            padding: 1vh;
+            margin-bottom: 1vh;
+            position: relative;
+            padding-top: 3vh;
+            text-align: center; /* Center the text */
+        }
+        .menu-item h3, .physicum-menu-item h3 {
+            margin-top: 0.5vh;
+            color: #444;
+            font-size: 3vh;
+        }
+        .menu-item-tag {
+            background-color: #e0e0e0;
+            padding: 0.2vh 0.6vh;
+            border-radius: 1vh;
+            font-size: 1.5vh;
+            margin-right: 0.5vh;
+            position: absolute;
+            top: 0.5vh;
+            left: 50%; /* Center the tags */
+            transform: translateX(-50%); /* Center the tags */
+            white-space: nowrap; /* Prevent wrapping of tags */
+        }
+        .menu-item-ingredients {
+            font-size: 1.8vh;
+            color: #666;
+        }
+        .physicum-menu-items-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1vh;
+        }
+        .physicum-menu-item {
+            flex: 1;
+            min-width: 0;
+        }
+        @media (max-width: 768px) {
+            .top-section {
+                flex-direction: column;
+                height: auto;
+            }
+            .menu-box {
+                width: 100%;
+                height: auto;
+                margin-bottom: 1vh;
+            }
+            .menu-box:first-child {
+                margin-right: 0;
+            }
+            .physicum-box {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-section">
+            <div class="menu-box">
+                <h2>Exactum. 11:00–14:00</h2>
+                
+                    <div class="menu-item">
+                        <span class="menu-item-tag">Vegan</span>
+                        
+                            <span class="menu-item-tag">Gluten free</span>
+                        
+                        
+                        <h3>Gluten-free oats</h3>
+                        <p class="menu-item-ingredients"></p>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="menu-item-tag">Vegan</span>
+                        
+                            <span class="menu-item-tag">Gluten free, According to Kela dietary recommendation</span>
+                        
+                        
+                        <h3>Black bean quinoa soup with tomato</h3>
+                        <p class="menu-item-ingredients"></p>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="menu-item-tag">Vegan</span>
+                        
+                            <span class="menu-item-tag">Gluten free, According to Kela dietary recommendation</span>
+                        
+                        
+                        <h3>Sweet potato curry</h3>
+                        <p class="menu-item-ingredients"></p>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="menu-item-tag">Vegan</span>
+                        
+                            <span class="menu-item-tag">Gluten free, According to Kela dietary recommendation</span>
+                        
+                        
+                        <h3>Cabbage rolls &amp; lingonperryjam</h3>
+                        <p class="menu-item-ingredients"></p>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="menu-item-tag">Lunch</span>
+                        
+                            <span class="menu-item-tag">Lactose free, According to Kela dietary recommendation</span>
+                        
+                        
+                        <h3>Chorizo meatballs with tomato sauce</h3>
+                        <p class="menu-item-ingredients"></p>
+                    </div>
+                
+            </div>
+            <div class="menu-box">
+                <h2>Chemicum. 10:30–15:00</h2>
+                
+                    <div class="menu-item">
+                        <span class="menu-item-tag">Vegan</span>
+                        
+                            <span class="menu-item-tag">Gluten free</span>
+                        
+                        
+                        <h3>Harissa balls &amp; bbq sauce sauce</h3>
+                        <p class="menu-item-ingredients"></p>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="menu-item-tag">Vegan</span>
+                        
+                            <span class="menu-item-tag">Gluten free, According to Kela dietary recommendation</span>
+                        
+                        
+                        <h3>Sweet potato curry</h3>
+                        <p class="menu-item-ingredients"></p>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="menu-item-tag">Fish</span>
+                        
+                            <span class="menu-item-tag">Lactose free, According to Kela dietary recommendation</span>
+                        
+                        
+                        <h3>Salmon lasagne</h3>
+                        <p class="menu-item-ingredients"></p>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="menu-item-tag">Dessert</span>
+                        
+                        
+                        <h3>Chocolate cake</h3>
+                        <p class="menu-item-ingredients"></p>
+                    </div>
+                
+            </div>
+        </div>
+        <div class="physicum-box">
+            <h2>Physicum. 10:00–16:30. (Fri: 10:00–15:00)</h2>
+            
+                <div class="physicum-menu-items-container">
+                    
+                        <div class="physicum-menu-item">
+                            
+                            
+                            <h3>Panini</h3>
+                            <p class="menu-item-ingredients"></p>
+                        </div>
+                    
+                        <div class="physicum-menu-item">
+                            
+                            
+                            <h3>Salad</h3>
+                            <p class="menu-item-ingredients"></p>
+                        </div>
+                    
+                        <div class="physicum-menu-item">
+                            
+                            
+                            <h3>Baguette sandwich</h3>
+                            <p class="menu-item-ingredients"></p>
+                        </div>
+                    
+                </div>
+            
+        </div>
+    </div>
+</body>
+</html>
