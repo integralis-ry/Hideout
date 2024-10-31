@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniCafe Menus</title>
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding: 1vh;
+            box-sizing: border-box;
+        }
+        .top-section {
+            display: flex;
+            height: 79vh;
+            margin-bottom: 1vh;
+        }
+        .menu-box {
+            width: calc(50% - 0.5vh);
+            height: 100%;
+            overflow-y: auto;
+            padding: 1vh;
+            box-sizing: border-box;
+        }
+        .menu-box:first-child {
+            margin-right: 1vh;
+        }
+        .physicum-box {
+            height: 19vh;
+            overflow-y: auto;
+            padding: 1vh;
+            box-sizing: border-box;
+        }
+        .physicum-box h2 {
+            text-align: center; /* Center the h2 element in the physicum-box */
+        }
+        .menu-box h2 {
+            text-align: center;
+        }
+        .menu-box, .physicum-box {
+            background-color: white;
+            border-radius: 2vh;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 1vh;
+            margin-top: 0;
+            font-size: 2.5vh;
+        }
+        .menu-item, .physicum-menu-item {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 1vh;
+            padding: 1vh;
+            margin-bottom: 1vh;
+            position: relative;
+            padding-top: 3vh;
+            text-align: center; /* Center the text */
+        }
+        .menu-item h3, .physicum-menu-item h3 {
+            margin-top: 0.5vh;
+            color: #444;
+            font-size: 3vh;
+        }
+        .menu-item-tag {
+            background-color: #e0e0e0;
+            padding: 0.2vh 0.6vh;
+            border-radius: 1vh;
+            font-size: 1.5vh;
+            margin-right: 0.5vh;
+            position: absolute;
+            top: 0.5vh;
+            left: 50%; /* Center the tags */
+            transform: translateX(-50%); /* Center the tags */
+            white-space: nowrap; /* Prevent wrapping of tags */
+        }
+        .menu-item-ingredients {
+            font-size: 1.8vh;
+            color: #666;
+        }
+        .physicum-menu-items-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1vh;
+        }
+        .physicum-menu-item {
+            flex: 1;
+            min-width: 0;
+        }
+        @media (max-width: 768px) {
+            .top-section {
+                flex-direction: column;
+                height: auto;
+            }
+            .menu-box {
+                width: 100%;
+                height: auto;
+                margin-bottom: 1vh;
+            }
+            .menu-box:first-child {
+                margin-right: 0;
+            }
+            .physicum-box {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-section">
+            <div class="menu-box">
+                <h2>Exactum. 11:00–14:00</h2>
+                {% for item in menu_data.exactum %}
+                    <div class="menu-item">
+                        <span class="menu-item-tag">{{ item.category }}</span>
+                        {% if item.diets %}
+                            <span class="menu-item-tag">{{ item.diets }}</span>
+                        {% endif %}
+                        {% if item.climate_choice %}
+                            <span class="menu-item-tag">{{ item.climate_choice }}</span>
+                        {% endif %}
+                        <h3>{{ item.title }}</h3>
+                        <p class="menu-item-ingredients">{{ item.ingredients }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="menu-box">
+                <h2>Chemicum. 10:30–15:00</h2>
+                {% for item in menu_data.chemicum %}
+                    <div class="menu-item">
+                        <span class="menu-item-tag">{{ item.category }}</span>
+                        {% if item.diets %}
+                            <span class="menu-item-tag">{{ item.diets }}</span>
+                        {% endif %}
+                        {% if item.climate_choice %}
+                            <span class="menu-item-tag">{{ item.climate_choice }}</span>
+                        {% endif %}
+                        <h3>{{ item.title }}</h3>
+                        <p class="menu-item-ingredients">{{ item.ingredients }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="physicum-box">
+            <h2>Physicum. 10:00–16:30. (Fri: 10:00–15:00)</h2>
+            {% if menu_data.physicum %}
+                <div class="physicum-menu-items-container">
+                    {% for item in menu_data.physicum %}
+                        <div class="physicum-menu-item">
+                            {% if item.diets %}
+                                <span class="menu-item-tag">{{ item.diets }}</span>
+                            {% endif %}
+                            {% if item.climate_choice %}
+                                <span class="menu-item-tag">{{ item.climate_choice }}</span>
+                            {% endif %}
+                            <h3>{{ item.title }}</h3>
+                            <p class="menu-item-ingredients">{{ item.ingredients }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p><strong>Hey there, we haven't updated the menu for this week yet!</strong></p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

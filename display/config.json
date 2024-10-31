@@ -17,7 +17,7 @@
             "duration":15
         },
         {
-            "url":"file://{{DIR}}/unicafe_menu.html",
+            "url":"file://{{DIR}}/unicafe_web_scraper/menu_data.html",
             "duration":35
         },
         {
