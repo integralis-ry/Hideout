@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f0f0f0;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.games-container {
+    display: flex;
+    gap: 20px;
+}
+
+.stats-container {
+    display: flex;
+    gap: 20px;
+}
+
+.column, .leaderboard, .funny-comments {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.game-entry {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f8f8f8;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.leaderboard-entry {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+}
+
+.top-three {
+    font-weight: bold;
+    background-color: #f8f8f8;
+}
+
+.top-three .win-count {
+    color: #2c5282;
+}
+
+.leaderboard-entry {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.win-count {
+    font-weight: bold;
+    color: #2c5282;
+}
+
+#comment-display {
+    padding: 15px;
+    background: #f8f8f8;
+    border-radius: 4px;
+    transition: opacity 0.5s ease;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+}

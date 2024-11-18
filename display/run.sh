@@ -2,6 +2,6 @@
 
 git pull
 
-python3 vujut_week/app.py
+python3 board_dir/app.py
 
 python3 display.py
