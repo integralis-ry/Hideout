@@ -28,12 +28,67 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.game-entry {
-    margin-bottom: 15px;
-    padding: 10px;
-    background: #f8f8f8;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+.leaderboard-entry {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.rank {
+    font-weight: bold;
+    color: #666;
+    margin-right: 10px;
+}
+
+.leaderboard-entry {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+}
+
+.player-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.game-breakdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.9em;
+    margin-top: 4px;
+}
+
+.game-stat {
+    background: #f0f0f0;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.85em;
+}
+
+.game-name {
+    color: #666;
+    text-transform: capitalize;
+}
+
+.game-wins {
+    margin-left: 4px;
+    font-weight: bold;
+    color: #2c5282;
+}
+
+.top-three {
+    background-color: #f8f8f8;
+}
+
+.total-wins {
+    font-weight: bold;
+    color: #2c5282;
 }
 
 .leaderboard-entry {
@@ -51,13 +106,6 @@ body {
 
 .top-three .win-count {
     color: #2c5282;
-}
-
-.leaderboard-entry {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px;
-    border-bottom: 1px solid #eee;
 }
 
 .win-count {

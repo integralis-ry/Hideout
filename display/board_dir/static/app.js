@@ -11,25 +11,27 @@ function createGameEntry(game) {
     `;
 }
 
-function rotateComments() {
-    if (funnyComments.length === 0) return;
-    
-    const commentDiv = document.getElementById('comment-display');
-    commentDiv.style.opacity = 0;
-    
-    setTimeout(() => {
-        currentCommentIndex = (currentCommentIndex + 1) % funnyComments.length;
-        commentDiv.textContent = funnyComments[currentCommentIndex];
-        commentDiv.style.opacity = 1;
-    }, 500);
-}
-
 function createLeaderboardEntry(winner, index) {
     const medal = index < 3 ? ['🥇', '🥈', '🥉'][index] : '';
+    
+    // Create game breakdown HTML
+    const gameBreakdown = Object.entries(winner.game_breakdown)
+        .map(([game, wins]) => `
+            <div class="game-stat">
+                <span class="game-name">${game}:</span>
+                <span class="game-wins">${wins}</span>
+            </div>
+        `).join('');
+    
     return `
         <div class="leaderboard-entry ${index < 3 ? 'top-three' : ''}">
-            <span class="player-name">${medal} ${winner.name}</span>
-            <span class="win-count">${winner.wins} win${winner.wins !== 1 ? 's' : ''}</span>
+            <div class="player-info">
+                <span class="player-name">${medal} ${winner.name}</span>
+                <span class="total-wins">${winner.wins} total win${winner.wins !== 1 ? 's' : ''}</span>
+            </div>
+            <div class="game-breakdown">
+                ${gameBreakdown}
+            </div>
         </div>
     `;
 }
@@ -70,6 +72,21 @@ function updateData() {
             document.getElementById('winner-counts').innerHTML = '<p>Error loading leaderboard</p>';
         });
 }
+
+function rotateComments() {
+    if (funnyComments.length === 0) return;
+    
+    const commentDiv = document.getElementById('comment-display');
+    commentDiv.style.opacity = 0;
+    
+    setTimeout(() => {
+        currentCommentIndex = (currentCommentIndex + 1) % funnyComments.length;
+        commentDiv.textContent = funnyComments[currentCommentIndex];
+        commentDiv.style.opacity = 1;
+    }, 500);
+}
+
+
 
 // Initial update
 updateData();
