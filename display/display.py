@@ -4,7 +4,7 @@ with open("config.json") as f:
     config = json.load(f)
 
 # Start Chromium with the first URL
-first_url = config["urls"][0]["url"]
+first_url = config["urls"][-1]["url"]
 proc = subprocess.Popen(["chromium-browser", "--kiosk", first_url])
 time.sleep(5)  # Wait for Chromium to launch
 
