@@ -23,5 +23,5 @@ sed -i -e "s/{{EMAIL}}/$EMAIL/g" info_configured.html
 sed -i -e "s/{{DIR}}/$DIR_ESC/g" config_configured.json
 
 python3 ../unicafe_menu_creation/menu_finder.py
-python3 ../unicafe_menu_creation/app.py
+python3 ../unicafe_menu_creation_app.py
 python3 display.py
