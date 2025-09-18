@@ -13,15 +13,15 @@
             "duration":35
         },
         {
-            "url":"https://livestream.com/accounts/4931571/events/5369913/player?autoPlay=true&mute=true",
-            "duration":15
-        },
-        {
-            "url":"file://{{DIR}}/unicafe_menu.html",
+            "url":"https://meow.camera/",
             "duration":35
         },
         {
-            "url":"file://{{DIR}}/info_configured.html",
+            "url":"~/Automation/display/unicafe_menu.html",
+            "duration":35
+        },
+        {
+            "url":"~/Automation/display/info_configured.html",
             "duration":15
         }
     ]
