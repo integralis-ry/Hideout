@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+# force last version of repo to be the github one
 git reset --hard origin/main
 
 cp info.html info_configured.html
