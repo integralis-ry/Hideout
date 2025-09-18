@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-git pull
+git reset --hard origin/main
 
 cp info.html info_configured.html
 cp config.json config_configured.json
