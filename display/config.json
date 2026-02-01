@@ -17,11 +17,11 @@
             "duration":5
         },
         {
-            "url":"~/Automation/display/unicafe_menu.html",
+            "url":"~/integralis/display/unicafe_menu.html",
             "duration":5
         },
         {
-            "url":"~/Automation/display/info_configured.html",
+            "url":"~/integralis/display/info_configured.html",
             "duration":5
         }
     ]
