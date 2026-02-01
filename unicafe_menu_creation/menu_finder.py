@@ -9,10 +9,11 @@ import time
 
 def navigate_and_save(driver, restaurant_name):
     wait = WebDriverWait(driver, 30)
-    restaurant_button = wait.until(EC.element_to_be_clickable((By.XPATH, f"//button[contains(text(), '{restaurant_name}')]")))
-    restaurant_button.click()
-
-    time.sleep(10)
+    btn = wait.until(EC.presence_of_element_located((By.XPATH, f"//button[contains(text(), '{restaurant_name}')]")))
+    
+    driver.execute_script("arguments[0].click();", btn)
+    time.sleep(5)
+    
     page_source = driver.page_source
     file_path = f'../unicafe_menu_creation/to_scrape_htmls/{restaurant_name.lower()}_page_source.html'
 
