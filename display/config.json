@@ -17,11 +17,11 @@
             "duration":5
         },
         {
-            "url":"~/integralis/Hideout/display/unicafe_menu.html",
+            "url":"file:///home/integralis/Hideout/display/unicafe_menu.html",
             "duration":5
         },
         {
-            "url":"~/integralis/Hideout/display/info_configured.html",
+            "url":"file:///home/integralis/Hideout/display/info_configured.html",
             "duration":5
         }
     ]
