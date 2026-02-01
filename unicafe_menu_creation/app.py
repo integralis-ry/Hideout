@@ -119,14 +119,25 @@ def save_rendered_html(html_content):
 
 def navigate_and_save(driver, restaurant_name):
     wait = WebDriverWait(driver, 30)
-    restaurant_button = wait.until(EC.element_to_be_clickable((By.XPATH, f"//button[contains(text(), '{restaurant_name}')]")))
-    restaurant_button.click()
-    time.sleep(5)
-    
-    page_source = driver.page_source
-    file_path = f'../unicafe_menu_creation/to_scrape_htmls/{restaurant_name.lower()}_page_source.html'
-    with open(file_path, 'w', encoding='utf-8') as file:
-        file.write(page_source)
+    try:
+        restaurant_button = wait.until(EC.presence_of_element_located(
+            (By.XPATH, f"//button[contains(text(), '{restaurant_name}')]")
+        ))
+        
+        driver.execute_script("arguments[0].click();", restaurant_button)
+
+        time.sleep(5)
+        
+        page_source = driver.page_source
+        file_path = f'../unicafe_menu_creation/to_scrape_htmls/{restaurant_name.lower()}_page_source.html'
+        
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.write(page_source)
+            
+    except Exception as e:
+        logging.error(f"Failed to scrape {restaurant_name}: {str(e)}")
 
 @app.route('/')
 def index():
