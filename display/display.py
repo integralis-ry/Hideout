@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 import json
 import time
 
@@ -8,12 +10,18 @@ urls = None
 
 def setup():
     global driver, durations, urls
-    service = webdriver.FirefoxService(executable_path="/snap/bin/geckodriver")
-    options = webdriver.FirefoxOptions()
-    options.add_argument("--start-maximized")
+    
+    # Configure Chrome Options for Kiosk Mode
+    options = Options()
     options.add_argument("--kiosk")
-    options.page_load_strategy = "none"
-    driver = webdriver.Firefox(service=service, options=options)
+    options.add_argument("--no-sandbox")  
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-infobars")
+    options.add_argument("--start-maximized")
+    
+    service = Service(executable_path="/usr/bin/chromedriver")
+    
+    driver = webdriver.Chrome(service=service, options=options)
     
     with open("config_configured.json", "r") as f:
         raw_config = f.read()
@@ -23,9 +31,10 @@ def setup():
     
     # Open two tabs for rotating content
     driver.get(urls[0])
-    driver.switch_to.new_window("tab")
+    driver.execute_script("window.open('');") # Open new tab
+    driver.switch_to.window(driver.window_handles[1])
     driver.get(urls[1])
-    # Switch back to the first content tab
+    
     driver.switch_to.window(driver.window_handles[0])
 
 def main():
@@ -36,14 +45,21 @@ def main():
         for i in range(length):
             time.sleep(durations[i])
             
+            # Switch between the two tabs
             current_tab = driver.current_window_handle
             next_tab = content_tabs[0] if current_tab == content_tabs[1] else content_tabs[1]
+            
             driver.switch_to.window(next_tab)
-            driver.get(urls[(i+2)%length])
+            driver.get(urls[(i+2) % length])
 
 if __name__ == "__main__":
     setup()
     try:
         main()
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        if driver:
+            driver.quit()
     except KeyboardInterrupt:
-        driver.quit()
+        if driver:
+            driver.quit()
