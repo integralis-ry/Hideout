@@ -174,18 +174,15 @@ def get_rendered_html():
         return response.data.decode('utf-8')
 
 if __name__ == '__main__':
-    # Instead of running the server, just get and save the rendered HTML
-    timestamp = datetime.now().strftime("%Y%m%d")
-    filename = f"menu_data_{timestamp}.html"
+    MENU_DIR = "/home/integralis/Hideout/unicafe_menu_creation"
     
-    if filename in os.listdir():
-        logging.info(f"File {filename} already exists. Skipping rendering.")
-    else:
-        for old_file in os.listdir():
-            if old_file.startswith("menu_data_"):
-                os.remove(old_file)
-                logging.info(f"Removed old file: {old_file}")
-        # use menu_data saving for render
-        # make sure to close the webscraper in case of errors
-        html_content = get_rendered_html()
-        save_rendered_html(html_content)
+    # always clear old HTML scraps to ensure a fresh parse
+    scrape_dir = os.path.join(MENU_DIR, "to_scrape_htmls")
+    if os.path.exists(scrape_dir):
+        for f in os.listdir(scrape_dir):
+            if f.endswith(".html"):
+                os.remove(os.path.join(scrape_dir, f))
+
+    html_content = get_rendered_html()
+    save_rendered_html(html_content)
+    logging.info("Menu successfully refreshed.")
