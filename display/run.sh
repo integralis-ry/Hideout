@@ -40,5 +40,9 @@ echo "Starting Menu Creation App in background..."
 $VENV_PYTHON "$MENU_DIR/app.py" & 
 sleep 2
 
+echo "Updating Word of the Day..."
+$VENV_PYTHON "$DIR/word_generator.py"
+sleep 2
+
 echo "Launching Kiosk Display..."
 $VENV_PYTHON "$DIR/display.py"
