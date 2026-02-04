@@ -5,52 +5,69 @@ import json
 import time
 
 driver = None
-durations = None
-urls = None
+config_data = [] # Store the full dict for easier access
+
+def apply_zoom(zoom_level):
+    """Applies the zoom level to the current page via JavaScript."""
+    try:
+        # Most modern browsers support style.zoom; alternatively use transform
+        driver.execute_script(f"document.body.style.zoom='{zoom_level}'")
+    except Exception as e:
+        print(f"Could not apply zoom: {e}")
 
 def setup():
-    global driver, durations, urls
+    global driver, config_data
     
-    # Configure Chrome Options for Kiosk Mode
     options = Options()
     options.add_argument("--kiosk")
     options.add_argument("--no-sandbox")  
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-infobars")
-    options.add_argument("--start-maximized")
     
     service = Service(executable_path="/usr/bin/chromedriver")
-    
     driver = webdriver.Chrome(service=service, options=options)
     
     with open("config_configured.json", "r") as f:
-        raw_config = f.read()
-    config = json.loads(raw_config)
-    urls = [x["url"] for x in config["urls"]]
-    durations = [x["duration"] for x in config["urls"]]
+        config = json.load(f)
+        config_data = config["urls"]
     
-    # Open two tabs for rotating content
-    driver.get(urls[0])
-    driver.execute_script("window.open('');") # Open new tab
+    # Initialize the first two tabs
+    driver.get(config_data[0]["url"])
+    apply_zoom(config_data[0].get("zoom", 1)) # Initial zoom
+    
+    driver.execute_script("window.open('');")
     driver.switch_to.window(driver.window_handles[1])
-    driver.get(urls[1])
+    
+    driver.get(config_data[1]["url"])
+    apply_zoom(config_data[1].get("zoom", 1)) # Initial zoom
     
     driver.switch_to.window(driver.window_handles[0])
 
 def main():
-    length = len(urls)
+    length = len(config_data)
     content_tabs = driver.window_handles
     
     while True:
         for i in range(length):
-            time.sleep(durations[i])
+            # 1. Wait for the duration of the CURRENT visible page
+            time.sleep(config_data[i]["duration"])
             
-            # Switch between the two tabs
+            # 2. Identify the tab we are moving TO
             current_tab = driver.current_window_handle
             next_tab = content_tabs[0] if current_tab == content_tabs[1] else content_tabs[1]
             
+            # 3. Switch to the next tab
             driver.switch_to.window(next_tab)
-            driver.get(urls[(i+2) % length])
+            
+            # 4. Determine the index of the next content to load in the BACKGROUND
+            # (i+2) because we are already showing 'i', 'i+1' is in the other tab.
+            next_content_idx = (i + 2) % length
+            next_url = config_data[next_content_idx]["url"]
+            next_zoom = config_data[next_content_idx].get("zoom", 1)
+            
+            # 5. Load the next URL and apply its specific zoom level
+            driver.get(next_url)
+            apply_zoom(next_zoom)
 
 if __name__ == "__main__":
     setup()
@@ -58,8 +75,6 @@ if __name__ == "__main__":
         main()
     except Exception as e:
         print(f"Error occurred: {e}")
-        if driver:
-            driver.quit()
-    except KeyboardInterrupt:
+    finally:
         if driver:
             driver.quit()

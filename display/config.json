@@ -2,27 +2,33 @@
     "urls": [
         {
             "url":"https://omatnaytot.hsl.fi/static?url=8913962a-d7a6-5837-85f1-16821af9ee9a",
-            "duration":15
+            "duration":15,
+            "zoom": 1
         },
         {
             "url":"https://omatnaytot.hsl.fi/static?url=73772c30-9514-563c-ab7b-3ff86a772be6",
-            "duration":15
+            "duration":15,
+            "zoom": 1
         },
         {
             "url":"https://integralis.fi/events",
-            "duration":15
+            "duration":15,
+            "zoom": 2
         },
         {
             "url":"https://meow.camera/",
-            "duration":15
+            "duration":15,
+            "zoom": 1
         },
         {
             "url":"file:///home/integralis/Hideout/display/unicafe_menu.html",
-            "duration":15
+            "duration":15,
+            "zoom": 1
         },
         {
             "url":"file:///home/integralis/Hideout/display/info_configured.html",
-            "duration":15
+            "duration":15,
+            "zoom": 2
         }
     ]
 }
