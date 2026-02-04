@@ -13,13 +13,6 @@ def navigate_and_save(driver, restaurant_name):
     btn = wait.until(EC.presence_of_element_located((By.XPATH, f"//button[contains(text(), '{restaurant_name}')]")))
     driver.execute_script("arguments[0].scrollIntoView();", btn)
     driver.execute_script("arguments[0].click();", btn)
-    
-    try:
-        friday_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(., 'Fri')]")))
-        driver.execute_script("arguments[0].click();", friday_btn)
-        print(f"Switched to Friday tab for {restaurant_name}")
-    except Exception as e:
-        print(f"Could not find Friday tab for {restaurant_name}, staying on default.")
 
     time.sleep(10) 
     
